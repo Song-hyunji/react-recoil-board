@@ -8,7 +8,7 @@ article{
   margin:auto;
 }
 #articleTitle {
-  height: 40px;
+  padding: 8px;
   background-color: #f2f2f2;
   border: 3px solid transparent;
   border-radius: 4px;

@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
   header {
     text-align: left;
     margin : auto;
-    width: 80%;
+    // width: 80%;
     
     // border-bottom: 1px solid black;
     // box-shadow: 10px 10px 20px gray;

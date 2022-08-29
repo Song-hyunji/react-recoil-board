@@ -14,8 +14,7 @@ th, td {
   cursor: pointer;
 }
 tr:hover {
-  color: #1851ff;
-  font-weight: bold;
+  background-color: #d8d8d8;
 }
 `;
 //목차 보여주기

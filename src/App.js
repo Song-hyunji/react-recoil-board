@@ -41,15 +41,17 @@ function App() {
 
   return (
     <>
+      <div style={{ display: 'inline-flex', width: '100%', justifyContent: 'space-between'}}>
       <Header />
-      <Nav />
-      {content}
-      <div>
-        <button href="/create" onClick={event => {
+      <>
+        <button href="/create" style={{margin: '17px 0px'}}onClick={event => {
           event.preventDefault();
           setMode('CREATE');
         }}>Create</button>
+      </>
       </div>
+      <Nav />
+      {content}
 
     </>
   );
