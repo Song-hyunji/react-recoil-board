@@ -1,13 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
 import { useRecoilState, useRecoilValue } from "recoil";
-import { modeState, idState, nextIdState, topicsState, titleState, bodyState, todoListFilterState,
-           contentState, todoListStatsState} from './component/atom/boardState';
+import { todoListFilterState, contentState, todoListStatsState} from './atom/boardState';
 
-function Stats() {
+const StyledStats = styled.div`
+div{
+  display: inline-flex;
+  align-items: center;
+  height: 60px;
+}
+
+select{
+  margin-left: 10px;
+}
+
+`;
+
+const Stats = () => {
   const [filter, setFilter] = useRecoilState(todoListFilterState);
 
-  const content = useRecoilValue(contentState);
   const { totalNum, totalCompletedNum, totalUncompletedNum, percentCompleted } = useRecoilValue(todoListStatsState);
   let formattedPercentCompleted = Math.round(percentCompleted * 100);
 
@@ -15,22 +25,22 @@ function Stats() {
     setFilter(value);
   };
 
-  const TodoListStats = () => {
-    const { totalNum, totalCompletedNum, totalUncompletedNum, percentCompleted } =
-      useRecoilValue(todoListStatsState);
-    let formattedPercentCompleted = Math.round(percentCompleted * 100);
-  }
-
   return (
     <>
+    <StyledStats>
+      <div>
+        <div>
+          (완료율 {formattedPercentCompleted}%) {totalCompletedNum}개 완료 + {totalUncompletedNum}개 미완료 / 총 {totalNum}개
+        </div>
         <select value={filter} onChange={updateFilter}>
           <option value="Show All">All</option>
           <option value="Show Completed">Completed</option>
           <option value="Show Uncompleted">Uncompleted</option>
         </select>
-        총 {totalNum}개 중, {totalCompletedNum}개 완료 | {totalUncompletedNum}개 미완료 (완료율 {formattedPercentCompleted}%)
+      </div>
+    </StyledStats>
     </>
-  );
+  )
 }
 
-export default App;
+export default Stats;

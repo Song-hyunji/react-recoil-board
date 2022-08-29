@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useEffect } from 'react';
 import { useRecoilState } from "recoil";
 import { modeState, titleState, bodyState, idState, topicsState } from './atom/boardState';
 
@@ -28,6 +29,19 @@ function Article() {
   const [title, setTitle] = useRecoilState(titleState);
   const [body, setBody] = useRecoilState(bodyState);
   const [topics, setTopics] =useRecoilState(topicsState);
+
+  useEffect(() => {
+    //현재 선택된 id에 맞는 topic으로 보여주기
+    if (id != null && mode != 'UPDATE') {
+      topics.forEach(topic => {
+        if (topic.id === id) {
+          setTitle(topic.title);
+          setBody(topic.body);
+        }
+      });
+    }
+  }, [id]);
+
 
   return (
     <><StyledArticle>

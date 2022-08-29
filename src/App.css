@@ -2,6 +2,7 @@
   text-align: center;
   width: 80%;
   margin: auto;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 button, #submitButton {
@@ -21,6 +22,9 @@ button, #submitButton {
 button:hover, #submitButton:hover{
 background-color: rgb(136, 136, 136);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
 
 /* .App {
 text-align: center;

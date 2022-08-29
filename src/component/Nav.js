@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { topicsState, idState, modeState, filteredTodoListState } from './atom/boardState';
+import { topicsState, idState, modeState, nextIdState, filteredTodoListState } from './atom/boardState';
 import { useEffect } from "react";
 
 const StyledNav = styled.nav`
@@ -24,11 +24,23 @@ function Nav() {
   const filteredTopics = useRecoilValue(filteredTodoListState);
   const [topics, setTopics] = useRecoilState(topicsState);
   const [id, setId] = useRecoilState(idState);
+  const [nextId, setNextId] = useRecoilState(nextIdState);
   const [mode, setMode] = useRecoilState(modeState);
 
   useEffect(() => {
-    console.log("useEffect", topics)
-  }, [topics]);
+    //localStorage에서 값 읽어오기
+    if (topics.length === 0) {
+      const data = JSON.parse(localStorage.getItem('data'));
+      if(data == null){
+        data = [{id:1, title:'html', body:'html is ...', isComplete: false}, 
+        {id:2, title:'css', body:'css is ...', isComplete: false}, 
+        {id:3, title:'javascript', body:'javascript is ...', isComplete: false}];
+      }
+
+      setTopics(data);
+      setNextId(5);
+    }
+  })
   
   const checkHandler = ({ target }) => {
     const idx = topics.findIndex(topic => topic.id === Number(target.id));

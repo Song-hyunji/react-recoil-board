@@ -8,25 +8,37 @@ const StyledHeader = styled.header`
     color : black;
   }
   header {
-    text-align: left;
-    margin : auto;
-    // width: 80%;
+    display: flex;
+    width:100%;
+    justify-content: space-between;
     
-    // border-bottom: 1px solid black;
-    // box-shadow: 10px 10px 20px gray;
+  }
+  #createButton {
+    margin: 20px 0px 0px;
+    height: 50px;
+    line-height: 0px;
+    border-radius: 60%;
+    background-color: rgb(136, 136, 136);
+    color: white;
+    font-size: 30px;
   }
   
 `;
 
 const Header = () => {
   const setMode = useSetRecoilState(modeState);
+
   return <>
     <StyledHeader>
       <header>
         <h1><a href="/" onClick={(event) => {
           event.preventDefault();
           setMode('WELCOME');
-        }}>{"WEB BOARD"}</a></h1>
+        }}>{"TO DO LIST"}</a></h1>
+      <button id="createButton" href="/create" onClick={event => {
+        event.preventDefault();
+        setMode('CREATE');
+      }}>+</button>
       </header>
     </StyledHeader>
   </>
