@@ -35,7 +35,7 @@ function Create() {
           const _title = event.target.title.value;
           const _body = event.target.body.value;
 
-          const newTopics = [...topics, { id: nextId, title: _title, body: _body }];
+          const newTopics = [...topics, { id: nextId, title: _title, body: _body, isComplete: false }];
           setTopics(newTopics);
           localStorage.setItem('data', JSON.stringify(newTopics)); //데이터 만든 후 storage에 반영
 

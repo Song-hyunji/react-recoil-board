@@ -36,10 +36,11 @@ function Update(){
         const _body = event.target.body.value;
 
         const idx = topics.findIndex(topic => topic.id === id);
+        const newTopics = [...topics.slice(0, idx), { id: id, title: _title, body: _body, isComplete: topics[idx].isComplete}, ...topics.slice(idx + 1)];
 
-        setTopics([...topics.slice(0, idx), { id: id, title: _title, body: _body }, ...topics.slice(idx + 1)]); // newTopics[idx] = updatedTopic;
+        setTopics(newTopics); // newTopics[idx] = updatedTopic;
         setMode('READ');
-        localStorage.setItem('data', JSON.stringify(topics)); //storage에 수정사항 반영
+        localStorage.setItem('data', JSON.stringify(newTopics)); //storage에 수정사항 반영
       }}>
 
         <p><input id="titleInput" type="text" name="title" placeholder="title" value={title} onChange={event=>{
