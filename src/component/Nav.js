@@ -26,21 +26,22 @@ function Nav() {
   const [id, setId] = useRecoilState(idState);
   const [nextId, setNextId] = useRecoilState(nextIdState);
   const [mode, setMode] = useRecoilState(modeState);
+  let data;
 
   useEffect(() => {
     //localStorage에서 값 읽어오기
-    if (topics.length === 0) {
-      const data = JSON.parse(localStorage.getItem('data'));
-      if(data == null){
-        data = [{id:1, title:'html', body:'html is ...', isComplete: false}, 
-        {id:2, title:'css', body:'css is ...', isComplete: false}, 
-        {id:3, title:'javascript', body:'javascript is ...', isComplete: false}];
+    if (topics.length === 0 && localStorage.getItem('data') == null) {
+        data = [{id:1, title:'Todo1', body:'Todo1 ...', isComplete: false}, 
+        {id:2, title:'Todo2', body:'Todo2 ...', isComplete: false}, 
+        {id:3, title:'Todo3', body:'Todo3 ...', isComplete: false}];
+        localStorage.setItem('data', JSON.stringify(data));
+      }else{
+        data = JSON.parse(localStorage.getItem('data'));
       }
 
       setTopics(data);
       setNextId(5);
-    }
-  })
+  }, [])
   
   const checkHandler = ({ target }) => {
     const idx = topics.findIndex(topic => topic.id === Number(target.id));
