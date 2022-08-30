@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect } from 'react';
 import { useRecoilState } from "recoil";
-import { modeState, titleState, bodyState, idState, topicsState } from './atom/boardState';
+import { modeState, idState, titleState, bodyState, topicsState } from './atom/State';
 
 const StyledArticle = styled.article`
 article{
@@ -16,7 +16,7 @@ article{
 }
 
 #contentTitle {
-  height: 150px;
+  line-height: 150px;
   border: 1.2px solid black;
   border-radius: 2px;
   font-size:18px;
@@ -32,7 +32,7 @@ function Article() {
 
   useEffect(() => {
     //현재 선택된 id에 맞는 topic으로 보여주기
-    if (id != null && mode != 'UPDATE') {
+    if ( id && mode != 'UPDATE') {
       topics.forEach(topic => {
         if (topic.id === id) {
           setTitle(topic.title);
@@ -52,7 +52,6 @@ function Article() {
         <button href={'/update/' + id} onClick={event => {
           event.preventDefault();
           setMode('UPDATE');
-          
         }}>Update</button>
 
         {/* DELETE 버튼. 삭제 누른 것 제외하고 배열에 담아서 배열state 갱신 */}
@@ -61,7 +60,7 @@ function Article() {
           setTopics(newTopics);
           setMode('WELCOME');
           localStorage.setItem('data', JSON.stringify(newTopics));
-        }} >Delete</button>
+        }}>Delete</button>
 
       </article>
     </StyledArticle>

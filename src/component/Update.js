@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { useRecoilState } from "recoil";
-import {modeState, idState, titleState, topicsState, bodyState} from './atom/boardState';
+import {idState, titleState, bodyState, topicsState, modeState} from './atom/State';
 
 const StyledUpdate = styled.article`
   #titleInput {
     width: 90%;
-    height: 40px;
+    line-height: 40px;
     background-color: #f2f2f2;
     border: 3px solid transparent;
     border-radius: 4px;
@@ -13,7 +13,7 @@ const StyledUpdate = styled.article`
   
   #contentInput {
     width: 90%;
-    height: 150px;
+    line-height: 150px;
     border: 1.2px solid black;
     border-radius: 2px;
   }
@@ -38,7 +38,7 @@ function Update(){
         const idx = topics.findIndex(topic => topic.id === id);
         const newTopics = [...topics.slice(0, idx), { id: id, title: _title, body: _body, isComplete: topics[idx].isComplete}, ...topics.slice(idx + 1)];
 
-        setTopics(newTopics); // newTopics[idx] = updatedTopic;
+        setTopics(newTopics); 
         setMode('READ');
         localStorage.setItem('data', JSON.stringify(newTopics)); //storage에 수정사항 반영
       }}>

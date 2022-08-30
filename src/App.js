@@ -1,10 +1,9 @@
 import './App.css';
-import { useEffect } from 'react';
-import Nav from './component/Nav';
 import Header from './component/Header';
 import Stats from './component/Stats';
+import List from './component/List';
 import { useRecoilValue } from "recoil";
-import { contentState } from './component/atom/boardState';
+import { contentState } from './component/atom/State';
 
 function App() {
   const content = useRecoilValue(contentState);
@@ -13,7 +12,7 @@ function App() {
     <>
       <Header />
       <Stats/>
-      <Nav />
+      <List />
       {content}
     </>
   );

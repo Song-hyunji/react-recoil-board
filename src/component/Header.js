@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useSetRecoilState } from "recoil";
-import { modeState } from './atom/boardState';
+import { modeState } from './atom/State';
 
 const StyledHeader = styled.header`
   a { 
@@ -22,7 +22,6 @@ const StyledHeader = styled.header`
     color: white;
     font-size: 30px;
   }
-  
 `;
 
 const Header = () => {
@@ -31,14 +30,18 @@ const Header = () => {
   return <>
     <StyledHeader>
       <header>
-        <h1><a href="/" onClick={(event) => {
+        <h1>
+          <a href="/" onClick={(event) => {
+            event.preventDefault();
+            setMode('WELCOME');}}>
+              {"TO DO LIST"}
+          </a>
+        </h1>
+        <button id="createButton" href="/create" onClick={event => {
           event.preventDefault();
-          setMode('WELCOME');
-        }}>{"TO DO LIST"}</a></h1>
-      <button id="createButton" href="/create" onClick={event => {
-        event.preventDefault();
-        setMode('CREATE');
-      }}>+</button>
+          setMode('CREATE');}}>
+            +
+        </button>
       </header>
     </StyledHeader>
   </>

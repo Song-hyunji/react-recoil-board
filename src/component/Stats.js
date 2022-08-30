@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useRecoilState, useRecoilValue } from "recoil";
-import { todoListFilterState, contentState, todoListStatsState} from './atom/boardState';
+import { todoListFilterState, todoListStatsState} from './atom/State';
 
 const StyledStats = styled.div`
 div{
@@ -12,12 +12,10 @@ div{
 select{
   margin-left: 10px;
 }
-
 `;
 
 const Stats = () => {
   const [filter, setFilter] = useRecoilState(todoListFilterState);
-
   const { totalNum, totalCompletedNum, totalUncompletedNum, percentCompleted } = useRecoilValue(todoListStatsState);
   let formattedPercentCompleted = Math.round(percentCompleted * 100);
 

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { useRecoilState } from "recoil";
-import {modeState, idState, nextIdState, topicsState} from './atom/boardState';
+import {idState, nextIdState, topicsState, modeState} from './atom/State';
 
 const StyledCreate = styled.article`
   #titleInput {
     width: 90%;
-    height: 40px;
+    line-height: 40px;
     background-color: #f2f2f2;
     border: 3px solid transparent;
     border-radius: 4px;
@@ -13,18 +13,17 @@ const StyledCreate = styled.article`
   
   #contentInput {
     width: 90%;
-    height: 150px;
+    line-height: 150px;
     border: 1.2px solid black;
-    border-radius: 2px;
-
+    border-radius: 2px;s
   }
 `;
 
 function Create() {
+  const [id, setId] = useRecoilState(idState);
   const [nextId, setNextId] = useRecoilState(nextIdState);
   const [topics, setTopics] = useRecoilState(topicsState);
   const [mode, setMode] = useRecoilState(modeState);
-  const [id, setId] = useRecoilState(idState);
 
   return (
     <><StyledCreate>
@@ -41,7 +40,7 @@ function Create() {
 
           setMode('READ');
           setId(nextId);
-          setNextId(nextId + 1);
+          setNextId(nextId + 1)
         }}>
 
           <p><input id="titleInput" type="text" name="title" placeholder="WRITE TITLE" /></p>

@@ -4,31 +4,37 @@ import Create from "../Create";
 import Update from "../Update";
 import Welcome from "../Welcome";
 
+//WELCOME, READ, CRAETE, UPDATE 모드 있음
 export const modeState = atom({
     key: "mode",
     default: "WELCOME",
 });
 
+//사용자가 선택한 할 일의 id를 저장하는 atom
 export const idState = atom({
     key: "id",
     default: null,
 });
 
+//할 일을 새로 생성할 때 부여할 다음 id
 export const nextIdState = atom({
     key: "nextId",
     default: 0,
 });
 
+//전체 할 일을 담는 배열
 export const topicsState = atom({
     key: "topics",
     default: [],
 });
 
+//사용자가 선택한 일의 title 저장
 export const titleState = atom({
     key: "title",
     default: null,
 });
 
+//사용자가 선택한 일의 body(세부내용) 저장
 export const bodyState = atom({
     key: "body",
     default: null,
